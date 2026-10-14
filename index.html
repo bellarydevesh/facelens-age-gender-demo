@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="An educational browser demo that estimates age and model gender labels from a face image or webcam stream.">
+  <title>FaceLens | Age &amp; Gender Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FaceLens home">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>facelens<span class="brand-period">.</span></span>
+      </a>
+      <div class="model-status" id="model-status" role="status" aria-live="polite">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Loading browser models…</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">COMPUTER VISION · EDUCATIONAL DEMO</p>
+        <h1>A closer look at<br><span>facial analysis.</span></h1>
+        <p class="intro-copy">Explore face detection and model-generated age and gender estimates, right in your browser.</p>
+      </section>
+
+      <section class="workspace" aria-label="Face analysis workspace">
+        <div class="viewer-panel panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">01 / INPUT</p>
+              <h2>Your image</h2>
+            </div>
+            <span class="privacy-label"><span aria-hidden="true">●</span> Processed in your browser</span>
+          </div>
+
+          <div class="viewer" id="viewer">
+            <div class="empty-state" id="empty-state">
+              <div class="scan-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <h3>Start with a photo</h3>
+              <p>Choose an image or enable your camera to see the demo in action.</p>
+              <label class="button button-primary" for="image-upload">
+                <span aria-hidden="true">↑</span> Choose an image
+              </label>
+            </div>
+            <div class="media-stage" id="media-stage" hidden>
+              <img id="source-image" alt="Selected image" hidden>
+              <video id="camera-video" autoplay muted playsinline hidden></video>
+              <canvas id="overlay" aria-hidden="true"></canvas>
+            </div>
+            <div class="analysis-shade" id="analysis-shade" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              <span id="analysis-message">Analyzing faces…</span>
+            </div>
+          </div>
+
+          <div class="viewer-actions">
+            <input id="image-upload" type="file" accept="image/*" hidden>
+            <label class="button button-secondary" for="image-upload" id="choose-image-button">↑ <span>Upload image</span></label>
+            <button class="button button-secondary" id="camera-button" type="button" disabled>
+              <span aria-hidden="true">◉</span> <span>Use camera</span>
+            </button>
+            <button class="button button-quiet" id="stop-camera-button" type="button" hidden>Stop camera</button>
+          </div>
+          <p class="helper-text">For privacy, use images only with the subject’s consent. Nothing is uploaded by this page.</p>
+        </div>
+
+        <aside class="results-panel panel" aria-labelledby="results-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">02 / OUTPUT</p>
+              <h2 id="results-title">Detections</h2>
+            </div>
+            <span class="count-badge"><span id="face-count">0</span> faces</span>
+          </div>
+          <div class="results-list" id="results-list" aria-live="polite">
+            <div class="results-empty" id="results-empty">
+              <span class="results-symbol" aria-hidden="true">◎</span>
+              <p>Results will appear here once a face is detected.</p>
+            </div>
+          </div>
+          <div class="estimate-note">
+            <span class="note-icon" aria-hidden="true">i</span>
+            <p>These are approximate model outputs, not verified facts. Age and gender estimates can be inaccurate and biased. Gender labels reflect the model’s limited classes, not a person’s gender identity.</p>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="page-footer">
+        <span>FACE ANALYSIS PROTOTYPE</span>
+        <span>Not for identity, eligibility, or other consequential decisions.</span>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="alert" hidden></div>
+</body>
+</html>
