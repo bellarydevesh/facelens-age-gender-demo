@@ -28,7 +28,7 @@ Camera access requires localhost or HTTPS and browser permission. Select **Uploa
 
 The supplied report describes a broader Python project with OpenCV, dataset preparation, CNN training, classical ML comparisons (SVM, Random Forest, Logistic Regression, KNN), and quantitative evaluation. Those components are **not implemented in this browser prototype**. The current app integrates pretrained browser models; it does not train or compare models.
 
-To make the report accurate for this deliverable:
+See [PROJECT_REPORT.md](./PROJECT_REPORT.md) for a corrected, implementation-aligned report. In summary:
 
 1. Describe the actual implementation as a browser-based prototype using `@vladmandic/face-api`, Tiny Face Detector, and AgeGenderNet. Do not state that OpenCV, TensorFlow/Keras, scikit-learn, or Python are used by this app.
 2. Treat webcam input and still-image input as implemented features. Do not claim a dataset, training pipeline, test-set accuracy, confusion matrix, or model comparison unless these are separately implemented and measured.
@@ -51,3 +51,4 @@ Then smoke-test model loading, image input, no-face handling, multiple faces, an
 - `index.html` — application markup and third-party script loading.
 - `styles.css` — responsive interface.
 - `app.js` — model loading, image/camera lifecycle, inference, and rendering.
+- `PROJECT_REPORT.md` — verified project description, workflow, limitations, and test status.
